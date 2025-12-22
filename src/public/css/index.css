@@ -16,6 +16,11 @@
     color: #842029;
 }
 
+.todo__alert--list {
+    margin: 0;
+}
+
+/* todo */
 .todo__content {
     max-width: 1230px;
     margin: 0 auto;
@@ -68,19 +73,6 @@
     width: 100%;
 }
 
-/* tdの割合を調整する用
-.col-table {
-    width: 100%;
-}
-
-.col-update {
-    width: 90%;
-}
-
-.col-delete {
-    width: 10%;
-}
-ここまで */
 
 .todo-table__row {
     border-bottom: 1px solid #ddd;
@@ -106,7 +98,7 @@
 }
 
 .update-form__item {
-    width: 80%;
+    width: 70%;
     /* line-height: 50%; */
 }
 
