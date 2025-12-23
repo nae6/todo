@@ -4,17 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeContentColumnTypeInTodosTable extends Migration
+class CreateTodosTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::table('todos', function (Blueprint $table) {
-            $table->text('content')->change();
+        Schema::create('todos', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('category_id')->constrained()->nullOnDelete();
+            $table->string('content', 20);
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class ChangeContentColumnTypeInTodosTable extends Migration
      */
     public function down()
     {
-        Schema::table('todos', function (Blueprint $table) {
-            $table->string('content')->change();
-        });
+        Schema::dropIfExists('todos');
     }
 }
