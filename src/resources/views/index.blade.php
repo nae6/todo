@@ -5,15 +5,12 @@
 @endsection
 
 @section('content')
-@if (session('success'))
 <div class="todo__alert">
+    @if (session('success'))
     <div class="todo__alert--success">
         {{ session('success')}}
     </div>
-</div>
-@endif
-<div class="todo__alert">
-    <!-- エラーが複数あるときの書き方 -->
+    @endif
     @if ($errors->any())
     <div class="todo__alert--danger">
         <ul class="todo__alert--list">
@@ -24,18 +21,36 @@
     </div>
     @endif
 </div>
-
-<!-- todo内容 -->
 <div class="todo__content">
-    <form action="/todos" method="post" class="create-form">
-        @csrf
-        <div class="create-form__item">
-            <input type="text" name="content" value="{{ $errors->any() ? old('title') : '' }}" class="create-form__item--input">
-        </div>
-        <div class="create-form__btn">
-            <button type="submit" class="create-form__btn--submit">作成</button>
-        </div>
-    </form>
+    <!-- 新規作成 -->
+    <div class="new-create">
+        <h2 class="create-form__header">新規作成</h2>
+        <form action="/todos" method="post" class="create-form">
+            @csrf
+            <div class="create-form__item">
+                <input type="text" name="content" value="{{ $errors->any() ? old('content') : '' }}" class="create-form__item--input">
+            </div>
+            <div class="create-form__btn">
+                <button type="submit" class="create-form__btn--submit">作成</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Todo検索 -->
+    <div class="new-create">
+        <h2 class="create-form__header">Todo検索</h2>
+        <form action="/todos" method="post" class="create-form">
+            @csrf
+            <div class="create-form__item">
+                <input type="text" name="content" value="{{ old('content') }}" class="create-form__item--input">
+            </div>
+            <div class="create-form__btn">
+                <button type="submit" class="create-form__btn--submit">検索</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Todo表示 -->
     <div class="todo-table">
         <table class="todo-table__inner">
 
