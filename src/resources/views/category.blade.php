@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/categories.css') }}">
+<link rel="stylesheet" href="{{ asset('css/category.css') }}">
 @endsection
 
 @section('content')
@@ -11,7 +11,6 @@
         {{ session('success')}}
     </div>
     @endif
-    <!-- エラーが複数あるときの書き方 -->
     @if ($errors->any())
     <div class="category__alert--danger">
         <ul class="category__alert--list">
@@ -25,10 +24,10 @@
 
 <div class="category__content">
     <!-- カテゴリ作成 -->
-    <form action="/todos" method="post" class="create-form">
+    <form action="/category" method="post" class="create-form">
         @csrf
         <div class="create-form__item">
-            <input type="text" name="content" value="{{ $errors->any() ? old('content') : '' }}" class="create-form__item--input">
+            <input type="text" name="name" value="{{ $errors->any() ? old('name') : '' }}" class="create-form__item--input">
         </div>
         <div class="create-form__btn">
             <button type="submit" class="create-form__btn--submit">作成</button>
@@ -36,21 +35,20 @@
     </form>
 
     <!-- category表示 -->
-    <div class="todo-table">
-        <table class="todo-table__inner">
-
-            <tr class="todo-table__row">
-                <th class="todo-table__header">Todo</th>
+    <div class="category-table">
+        <table class="category-table__inner">
+            <tr class="category-table__row">
+                <th class="category-table__header">category</th>
                 <th></th>
             </tr>
-            @foreach ($todos as $todo)
-            <tr class="todo-table__row">
-                <td class="todo-table__item">
-                    <form class="update-form" action="/todos/{{ $todo->id }}" method="POST">
+            @foreach ($categories as $category)
+            <tr class="category-table__row">
+                <td class="category-table__item">
+                    <form class="update-form" action="" method="POST">
                         @method('PATCH')
                         @csrf
                         <div class="update-form__item">
-                            <input class="update-form__item--input" type="text" name="content" value="{{ $todo['content'] }}">
+                            <input class="update-form__item--input" type="text" name="name" value="{{ $category['name'] }}">
                         </div>
                         <div class="update-form__btn">
                             <button type="submit" class="update-form__btn-submit">更新</button>
@@ -58,11 +56,11 @@
                     </form>
                 </td>
                 <td class="todo-table__item">
-                    <form action="/todos/delete" method="POST" class="delete-form">
+                    <form action="" method="POST" class="delete-form">
                         @method('DELETE')
                         @csrf
                         <div class="delete-form__btn">
-                            <input type="hidden" name="id" value="{{ $todo['id'] }}">
+                            <input type="hidden" name="id" value="">
                             <button type="submit" class="delete-form__btn-submit">削除</button>
                         </div>
                     </form>
