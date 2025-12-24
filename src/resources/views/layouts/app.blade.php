@@ -13,8 +13,12 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <a href="/" class="header__logo">Todo</a>
-            <a href="/categories.blade.php" class="header__nav">カテゴリ一覧</a>
+            <div>
+                <a href="/" class="header__logo">Todo</a>
+            </div>
+            <nav>
+                <a href="/category" class="header__nav">カテゴリ一覧</a>
+            </nav>
         </div>
     </header>
 

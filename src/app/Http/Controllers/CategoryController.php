@@ -3,31 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $todos = Todo::select('content', 'id')->orderBy('created_at', 'desc')->get();
-        return view('index', compact('todos'));
+        $categories = Category::select('id', 'name')->get();
+        return view('category', compact('categories'));
     }
 
-    public function store(TodoRequest $request)
+    public function store(CategoryRequest $request)
     {
-        $todo = $request->only(['content']);
-        Todo::create($todo);
-        return redirect('/')->with('success', 'Todoを作成しました');
+        $category = $request->only(['name']);
+        Category::create($category);
+        return redirect('/category')->with('success', 'categoryを作成しました');
     }
 
-    public function update(TodoRequest $request, Todo $todo)
-    {
-        $todo->update($request->only('content'));
-        return redirect('/')->with('success', 'Todoを更新しました');
-    }
-
-    public function destroy(Request $request)
-    {
-        Todo::find($request->id)->delete();
-        return redirect('/')->with('success', 'Todoを削除しました');
-    }
 }
