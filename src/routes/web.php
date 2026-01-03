@@ -15,13 +15,15 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', [TodoController::class, 'index']);
-Route::post('/todos', [TodoController::class, 'store']);
-Route::patch('/todos/{todo}', [TodoController::class, 'update']);
-Route::delete('/todos/delete', [TodoController::class, 'destroy']);
-Route::get('/todos/search', [TodoController::class, 'search']);
+Route::middleware('auth')->group(function() {
+    Route::get('/', [TodoController::class, 'index']);
+    Route::post('/todos', [TodoController::class, 'store']);
+    Route::patch('/todos/{todo}', [TodoController::class, 'update']);
+    Route::delete('/todos/delete', [TodoController::class, 'destroy']);
+    Route::get('/todos/search', [TodoController::class, 'search']);
 
-Route::get('/category', [CategoryController::class, 'index']);
-Route::post('/category', [CategoryController::class, 'store']);
-Route::patch('/category/update', [CategoryController::class, 'update']);
-Route::delete('/category/delete', [CategoryController::class, 'destroy']);
+    Route::get('/category', [CategoryController::class, 'index']);
+    Route::post('/category', [CategoryController::class, 'store']);
+    Route::patch('/category/update/{category}', [CategoryController::class, 'update']);
+    Route::delete('/category/delete/{category}', [CategoryController::class, 'destroy']);
+});

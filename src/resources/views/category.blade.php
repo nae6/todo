@@ -44,7 +44,7 @@
             @foreach ($categories as $category)
             <tr class="category-table__row">
                 <td class="category-table__item">
-                    <form class="update-form" action="" method="POST">
+                    <form class="update-form" action="/category/update/{{ $category->id}}" method="POST">
                         @method('PATCH')
                         @csrf
                         <div class="update-form__item">
@@ -56,11 +56,10 @@
                     </form>
                 </td>
                 <td class="todo-table__item">
-                    <form action="" method="POST" class="delete-form">
+                    <form action="/category/delete/{{ $category->id}}" method="POST" class="delete-form">
                         @method('DELETE')
                         @csrf
                         <div class="delete-form__btn">
-                            <input type="hidden" name="id" value="">
                             <button type="submit" class="delete-form__btn-submit">削除</button>
                         </div>
                     </form>

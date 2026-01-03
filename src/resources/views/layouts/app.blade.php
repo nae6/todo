@@ -17,7 +17,22 @@
                 <a href="/" class="header__logo">Todo</a>
             </div>
             <nav>
-                <a href="/category" class="header__nav">カテゴリ一覧</a>
+                <ul class="header-nav">
+                    @if (Auth::check())
+                    <li class="header-nav__item">
+                        <a class="header-nav__link" href="/mypage">マイページ</a>
+                    </li>
+                    <li class="header-nav__item">
+                        <form action="/logout" method="post">
+                        @csrf
+                            <button class="header-nav__button">ログアウト</button>
+                        </form>
+                    </li>
+                    @endif
+                    <li class="header-nav__item">
+                        <a href="/category" class="header__nav">カテゴリ一覧</a>
+                    </li>
+                </ul>
             </nav>
         </div>
     </header>
