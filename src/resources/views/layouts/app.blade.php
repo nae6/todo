@@ -20,7 +20,9 @@
                 <ul class="header-nav">
                     @if (Auth::check())
                     <li class="header-nav__item">
-                        <a class="header-nav__link" href="/mypage">マイページ</a>
+                        @auth
+                        <span>ようこそ、{{ Auth::user()->name }}さん</span>
+                        @endauth
                     </li>
                     <li class="header-nav__item">
                         <form action="/logout" method="post">
@@ -29,9 +31,6 @@
                         </form>
                     </li>
                     @endif
-                    <li class="header-nav__item">
-                        <a href="/category" class="header__nav">カテゴリ一覧</a>
-                    </li>
                 </ul>
             </nav>
         </div>

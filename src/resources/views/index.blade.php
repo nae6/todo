@@ -113,5 +113,10 @@
             @endforeach
         </table>
     </div>
+    <div class="category-list">
+        <div class="category-list__inner">
+            <a href="/category" class="category-list__link">カテゴリ一覧</a>
+        </div>
+    </div>
 </div>
 @endsection

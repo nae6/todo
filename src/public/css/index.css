@@ -186,3 +186,23 @@
 .col-delete {
     width: 10%;
 }
+
+.category-list {
+    width: 100%;
+}
+
+.category-list__inner {
+    width: 30%;
+    margin: 0 auto;
+    padding: 10px 0;
+    background-color: #000;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.category-list__link {
+    text-decoration: none;
+    color: #fff;
+}

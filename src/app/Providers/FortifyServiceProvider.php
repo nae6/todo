@@ -12,21 +12,26 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\LoginResponse;
+use App\Responses\LoginResponse as CustomLoginResponse;
+use Laravel\Fortify\Contracts\LogoutResponse;
+use App\Responses\LogoutResponse as CustomLogoutResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
-    public function register(): void
+    public function register()
     {
-        //
+        $this->app->singleton(LoginResponse::class, CustomLoginResponse::class);
+        $this->app->singleton(LogoutResponse::class, CustomLogoutResponse::class);
     }
 
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot()
     {
         Fortify::createUsersUsing(CreateNewUser::class);
         // Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);

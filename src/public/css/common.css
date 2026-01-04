@@ -18,8 +18,18 @@
     font-size: 24px;
 }
 
-.header__nav {
+.header-nav__item {
     color: #fff;
-    text-decoration: none;
+    font-size: 15px;
+}
+
+.header-nav__button {
+    border: none;
+    outline: none;
+    appearance: none;
+    padding: 0;
+    color: #fff;
+    cursor: pointer;
+    background-color: #000;
     font-size: 15px;
 }
