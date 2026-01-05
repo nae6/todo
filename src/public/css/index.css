@@ -89,7 +89,6 @@
     table-layout: fixed;
 }
 
-
 .todo-table__row {
     border-bottom: 1px solid #ddd;
     height: 60px;
@@ -97,34 +96,23 @@
 
 .todo-table__header {
     padding: 12px;
-    /* width: 20%; */
     text-align: left;
     font-weight: bold;
 }
 
-/* .todo-table__header--span { */
-    /* margin-right: 40%; */
-/* } */
-
 .todo-table__item:first-of-type {
     padding: 12px;
-    /* width: 90%; */
 }
 
 .update-form {
     width: 100%;
-    /* display: flex; */
-    /* justify-content: space-between; */
-    /* align-items: center; */
 }
 
 .update-form__item1 {
-    /* width: 50%; */
     line-height: 50%;
 }
 
 .update-form__item2 {
-    /* width: 30%; */
     line-height: 50%;
 }
 
@@ -205,4 +193,9 @@
 .category-list__link {
     text-decoration: none;
     color: #fff;
+}
+
+.complete-list {
+    text-align: center;
+    margin: 30px auto;
 }

@@ -105,7 +105,7 @@
                         @method('DELETE')
                         @csrf
                         <div class="delete-form__btn">
-                            <button type="submit" class="delete-form__btn-submit">削除</button>
+                            <button type="submit" class="delete-form__btn-submit">完了</button>
                         </div>
                     </form>
                 </td>
@@ -116,6 +116,9 @@
     <div class="category-list">
         <div class="category-list__inner">
             <a href="/category" class="category-list__link">カテゴリ一覧</a>
+        </div>
+        <div class="complete-list">
+            <a href="/complete">完了済み一覧</a>
         </div>
     </div>
 </div>

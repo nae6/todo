@@ -1,0 +1,48 @@
+.category__content {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: 60px 15px;
+}
+
+/* Todo-List Delete */
+.category-table {
+    margin: 30px auto;
+    width: 70%;
+    text-align: left;
+}
+
+.category-table__inner {
+    width: 100%;
+}
+
+
+.category-table__row {
+    border-bottom: 1px solid #ddd;
+    height: 60px;
+}
+
+.category-table__header {
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.category-table__item:first-of-type {
+    padding: 12px;
+    width: 90%;
+}
+
+.delete-form__btn {
+    width: 50px;
+    margin: 0 auto;
+}
+
+.delete-form__btn-submit {
+    padding: 5px;
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #ff0000;
+    color: #fff;
+}
