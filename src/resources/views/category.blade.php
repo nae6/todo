@@ -24,7 +24,7 @@
 
 <div class="category__content">
     <!-- カテゴリ作成 -->
-    <form action="/category" method="post" class="create-form">
+    <form action="{{ route('category.store') }}" method="post" class="create-form">
         @csrf
         <div class="create-form__item">
             <input type="text" name="name" value="{{ $errors->any() ? old('name') : '' }}" class="create-form__item--input">
@@ -44,11 +44,11 @@
             @foreach ($categories as $category)
             <tr class="category-table__row">
                 <td class="category-table__item">
-                    <form class="update-form" action="" method="POST">
+                    <form class="update-form" action="{{ route('category.update', $category) }}" method="POST">
                         @method('PATCH')
                         @csrf
                         <div class="update-form__item">
-                            <input class="update-form__item--input" type="text" name="name" value="{{ $category['name'] }}">
+                            <input class="update-form__item--input" type="text" name="name" value="{{ $category->name }}">
                         </div>
                         <div class="update-form__btn">
                             <button type="submit" class="update-form__btn-submit">更新</button>
@@ -56,11 +56,10 @@
                     </form>
                 </td>
                 <td class="todo-table__item">
-                    <form action="" method="POST" class="delete-form">
+                    <form action="{{ route('category.delete', $category) }}" method="POST" class="delete-form">
                         @method('DELETE')
                         @csrf
                         <div class="delete-form__btn">
-                            <input type="hidden" name="id" value="">
                             <button type="submit" class="delete-form__btn-submit">削除</button>
                         </div>
                     </form>

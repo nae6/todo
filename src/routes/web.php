@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CompleteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +16,33 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', [TodoController::class, 'index']);
-Route::post('/todos', [TodoController::class, 'store']);
-Route::patch('/todos/{todo}', [TodoController::class, 'update']);
-Route::delete('/todos/delete', [TodoController::class, 'destroy']);
-Route::get('/todos/search', [TodoController::class, 'search']);
+Route::middleware('auth')->group(function() {
+    Route::get('/', [TodoController::class, 'index'])
+        ->name('todos.index');
+    Route::post('/todos', [TodoController::class, 'store'])
+        ->name('todos.store');
+    Route::patch('/todos/{todo}', [TodoController::class, 'update'])
+        ->name('todos.update');
+    Route::patch('/todos/{todo}/complete', [TodoController::class, 'complete'])
+        ->name('todos.complete');
+    Route::get('/todos/search', [TodoController::class, 'search'])
+        ->name('todos.search');
 
-Route::get('/category', [CategoryController::class, 'index']);
-Route::post('/category', [CategoryController::class, 'store']);
-Route::patch('/category/update', [CategoryController::class, 'update']);
-Route::delete('/category/delete', [CategoryController::class, 'destroy']);
+    // category page
+    Route::get('/category', [CategoryController::class, 'index'])
+        ->name('category.index');
+    Route::post('/category', [CategoryController::class, 'store'])
+        ->name('category.store');
+    Route::patch('/category/update/{category}', [CategoryController::class, 'update'])
+        ->name('category.update');
+    Route::delete('/category/delete/{category}', [CategoryController::class, 'destroy'])
+        ->name('category.delete');
+
+    // complete page
+    Route::get('/todos/completed', [CompleteController::class, 'index'])
+        ->name('todos.completed');
+    Route::patch('/todos/{todo}/incomplete', [CompleteController::class, 'incomplete'])
+        ->name('todos.incomplete');
+    Route::delete('/todos/delete', [CompleteController::class, 'destroy'])
+        ->name('todos.delete');
+});

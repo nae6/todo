@@ -3,40 +3,65 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Todo;
+use App\Models\Category;
+use App\Models\User;
 use App\Http\Requests\TodoRequest;
 
 class TodoController extends Controller
 {
     public function index()
     {
-        $todos = Todo::select('content', 'id')->orderBy('created_at', 'desc')->get();
-        return view('index', compact('todos'));
+        $todos = Todo::with('category:id,name')
+            ->forUser(Auth::id())
+            ->Incomplete()
+            ->latest()
+            ->get();
+
+        $categories = Category::get();
+
+        return view('index', compact('todos', 'categories'));
     }
 
+    // 新規作成
     public function store(TodoRequest $request)
     {
-        $todo = $request->only(['content']);
-        Todo::create($todo);
+        Todo::create([
+            'user_id' => Auth::id(),
+            'category_id' => $request->category_id,
+            'content' => $request->content,
+        ]);
         return redirect('/')->with('success', 'Todoを作成しました');
     }
 
+    // 更新
     public function update(TodoRequest $request, Todo $todo)
     {
-        // $todo = $request->only('content');
-        // Todo::find($request->id)->update($todo);
-
-        // $todo = Todo::findOrFail($id);
-        // $todo->update($request->only('content'));
-
-        $todo->update($request->only('content'));
+        $todo->update($request->only(['category_id', 'content']));
 
         return redirect('/')->with('success', 'Todoを更新しました');
     }
 
-    public function destroy(Request $request)
+    // 完了フラグ
+    public function complete(Todo $todo)
     {
-        Todo::find($request->id)->delete();
-        return redirect('/')->with('success', 'Todoを削除しました');
+        $this->authorize('update', $todo);
+
+        $todo->update([
+            'is_done' => true,
+            'completed_at' => now(),
+        ]);
+
+        return redirect('/')->with('success', 'Todoを完了にしました');
     }
+
+    // 検索
+    public function search(Request $request)
+    {
+        $todos = Todo::with('category')->CategorySearch($request->category_id)->KeywordSearch($request->keyword)->get();
+        $categories = Category::select('id', 'name')->get();
+        return view('index', compact('todos', 'categories'));
+    }
+    // N+1問題：foreachの中でリレーションを呼んでいる時発生
 }

@@ -27,8 +27,13 @@
     padding: 60px 15px;
 }
 
-.create-form {
+/* create-form */
+.new-create {
     width: 70%;
+    margin: 0 auto;
+}
+.create-form {
+    width: 100%;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -37,14 +42,24 @@
 
 .create-form__item {
     width: 70%;
+    text-align: left;
 }
 
 .create-form__item--input {
     padding: 10px;
-    width: 100%;
+    width: 70%;
     height: 40px;
     border: 1px solid #ddd;
     border-radius: 3px;
+}
+
+.create-form__item--select {
+    padding: 10px;
+    width: 25%;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    appearance: none;
 }
 
 .create-form__btn {
@@ -71,8 +86,8 @@
 
 .todo-table__inner {
     width: 100%;
+    table-layout: fixed;
 }
-
 
 .todo-table__row {
     border-bottom: 1px solid #ddd;
@@ -81,32 +96,37 @@
 
 .todo-table__header {
     padding: 12px;
-    width: 20%;
     text-align: left;
     font-weight: bold;
 }
 
 .todo-table__item:first-of-type {
     padding: 12px;
-    width: 90%;
 }
 
 .update-form {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
 }
 
-.update-form__item {
-    width: 70%;
-    /* line-height: 50%; */
+.update-form__item1 {
+    line-height: 50%;
+}
+
+.update-form__item2 {
+    line-height: 50%;
 }
 
 .update-form__item--input {
-    width: 100%;
     outline: none;
+    width: 100%;
     padding: 5px;
     border: none;
+}
+
+.update-form__item-category {
+    text-align: left;
+    font-size: 13px;
+    width: 100%;
 }
 
 .update-form__btn {
@@ -136,4 +156,46 @@
     cursor: pointer;
     background-color: #ff0000;
     color: #fff;
+}
+
+/* colgroupを使用したテーブルレイアウト */
+.col-todo {
+    width: 50%;
+}
+
+.col-cat {
+    width: 20%;
+}
+
+.col-update {
+    width: 10%;
+}
+
+.col-delete {
+    width: 10%;
+}
+
+.category-list {
+    width: 100%;
+}
+
+.category-list__inner {
+    width: 30%;
+    margin: 0 auto;
+    padding: 10px 0;
+    background-color: #000;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.category-list__link {
+    text-decoration: none;
+    color: #fff;
+}
+
+.complete-list {
+    text-align: center;
+    margin: 30px auto;
 }
