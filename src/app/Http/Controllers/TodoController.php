@@ -13,13 +13,15 @@ class TodoController extends Controller
 {
     public function index()
     {
+        $this->authorize('viewAny', Todo::class);
+
         $todos = Todo::with('category:id,name')
             ->forUser(Auth::id())
             ->Incomplete()
             ->latest()
             ->get();
 
-        $categories = Category::get();
+        $categories = Category::select('id', 'name')->get();
 
         return view('index', compact('todos', 'categories'));
     }
@@ -38,6 +40,8 @@ class TodoController extends Controller
     // 更新
     public function update(TodoRequest $request, Todo $todo)
     {
+        $this->authorize('update', $todo);
+
         $todo->update($request->only(['category_id', 'content']));
 
         return redirect('/')->with('success', 'Todoを更新しました');
@@ -59,11 +63,16 @@ class TodoController extends Controller
     // 検索
     public function search(Request $request)
     {
-        $todos = Todo::with('category')
+        $this->authorize('viewAny', Todo::class);
+
+        $todos = Todo::with('category:id, name')
+            ->forUser(Auth::id())
             ->CategorySearch($request->category_id)
             ->KeywordSearch($request->keyword)
             ->Incomplete()
+            ->latest()
             ->get();
+
         $categories = Category::select('id', 'name')->get();
 
         return view('index', compact('todos', 'categories'));
