@@ -31,7 +31,7 @@
                 </td>
                 <td class="todo-table__item">
                     @if ($todo->is_done)
-                    <form action="{{ route('todos.incomplete', $todo) }}" method="POST" class="incomplete-form">
+                    <form action="{{ route('todos.incomplete', $todo->id) }}" method="POST" class="incomplete-form">
                         @method('PATCH')
                         @csrf
                         <div class="incomplete-form__btn">
@@ -41,7 +41,7 @@
                     @endif
                 </td>
                 <td class="todo-table__item">
-                    <form action="{{ route('todos.delete', $todo)}}" method="POST" class="delete-form">
+                    <form action="{{ route('todos.delete', $todo->id)}}" method="POST" class="delete-form">
                         @csrf
                         @method('DELETE')
                         <div class="delete-form__btn">

@@ -32,16 +32,16 @@ class CompleteController extends Controller
             'completed_at' => null,
         ]);
 
-        return redirect('/')->with('success', 'Todoを未完了に戻しました');
+        return redirect('/complete')->with('success', 'Todoを未完了に戻しました');
     }
 
     // 削除する
-    public function destroy(Request $request)
+    public function destroy(Todo $todo)
     {
         $this->authorize('delete', $todo);
 
         $todo->delete();
 
-        return redirect('/')->with('success', 'Todoを削除しました');
+        return redirect('/complete')->with('success', 'Todoを削除しました');
     }
 }

@@ -43,6 +43,6 @@ Route::middleware('auth')->group(function() {
         ->name('todos.completed');
     Route::patch('/todos/{todo}/incomplete', [CompleteController::class, 'incomplete'])
         ->name('todos.incomplete');
-    Route::delete('/todos/delete', [CompleteController::class, 'destroy'])
+    Route::delete('/todos/{todo}', [CompleteController::class, 'destroy'])
         ->name('todos.delete');
 });
