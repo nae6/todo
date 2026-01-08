@@ -42,8 +42,8 @@
                 </td>
                 <td class="todo-table__item">
                     <form action="{{ route('todos.delete', $todo->id)}}" method="POST" class="delete-form">
-                        @csrf
                         @method('DELETE')
+                        @csrf
                         <div class="delete-form__btn">
                             <button type="submit" class="delete-form__btn-submit">削除</button>
                         </div>
