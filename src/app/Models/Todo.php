@@ -31,7 +31,7 @@ class Todo extends Model
     {
         if (!empty($keyword))
         {
-            $query->where('content', 'Like', '%'.$keyword.'%');
+            $query->where('content', 'like', '%'.$keyword.'%');
         }
             return $query;
     }
@@ -54,5 +54,10 @@ class Todo extends Model
     {
         return $query->where('is_done', false);
     }
+
+    protected $casts = [
+        'is_done' => 'boolean',
+        'completed_at' => 'datetime',
+    ];
 
 }
