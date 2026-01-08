@@ -59,8 +59,13 @@ class TodoController extends Controller
     // 検索
     public function search(Request $request)
     {
-        $todos = Todo::with('category')->CategorySearch($request->category_id)->KeywordSearch($request->keyword)->get();
+        $todos = Todo::with('category')
+            ->CategorySearch($request->category_id)
+            ->KeywordSearch($request->keyword)
+            ->Incomplete()
+            ->get();
         $categories = Category::select('id', 'name')->get();
+
         return view('index', compact('todos', 'categories'));
     }
     // N+1問題：foreachの中でリレーションを呼んでいる時発生
