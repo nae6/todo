@@ -30,7 +30,7 @@ class TodoPolicy
      */
     public function view(User $user, Todo $todo)
     {
-        return $user->id === $todo->user_id;
+        //return $user->id === $todo->user_id;
     }
 
     /**

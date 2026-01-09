@@ -11,6 +11,8 @@ class CategoryController extends Controller
 {
     public function index()
     {
+        $this->authorize('viewAny', Category::class);
+
         $categories = Category::where('user_id', Auth::id())
             ->select('id', 'name')
             ->get();
