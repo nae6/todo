@@ -48,8 +48,8 @@ Laravelで作成したTodo管理アプリです。
   - カテゴリ検索（`scopeCategorySearch()`）
 
 ### その他
-- バリデーション（FormRequest）
-- テスト（Featureテスト）
+- バリデーション（`TodoRequest, CategoryRequest`）
+- テスト（`TodoTest`）
 
 ---
 
@@ -74,7 +74,7 @@ Laravelで作成したTodo管理アプリです。
 - users (1) ─── (N) categories
 - categories (1) ─── (N) todos
 
-（ここに画像を貼る場合）
+（ここに画像を貼る）
 ![ERD](docs/erd.png)
 
 ---
@@ -120,7 +120,7 @@ git clone https://github.com/nae6/laravel-todo-app.git
 cd laravel-todo-app
 ```
 
-### 2. 起動
+### 2. Dockerを起動
 ```bash
 docker-compose up -d --build
 ```
@@ -144,6 +144,5 @@ php artisan key:generate
 ### 5. DB作成・マイグレーション
 ```bash
 php artisan migrate
-（必要なら）
 php artisan db:seed
 ```
